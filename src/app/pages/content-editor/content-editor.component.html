@@ -1,0 +1,42 @@
+<div class="todo-container">
+
+    <h4>1. UPDATE WITH CUSTOM CONTENT</h4>
+
+    <mat-card class="mb-50">
+        <div #myText class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, qui modi
+            quas ipsum facere delectus facilis dolor nam repudiandae incidunt. Ducimus placeat aliquid atque sapiente
+            distinctio optio? Neque et error est ullam expedita hic quos. Excepturi voluptates nesciunt eveniet sapiente
+            obcaecati, consequuntur dolorem autem! Quaerat non hic delectus facilis sit?</div>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Your Content</mat-label>
+            <textarea matInput placeholder="Add your content" #newContent></textarea>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!newContent.value" color="accent"
+            (click)="updateContent(newContent.value)">Update Content</button>
+    </mat-card>
+
+
+    <h4>2. TODO LIST</h4>
+    <div class="input-container">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Notes</mat-label>
+            <input matInput placeholder="Add your notes" #notes>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!notes.value" color="accent" class="pl-16"
+            (click)="addTodo(notes.value)">Add Todo</button>
+    </div>
+
+    <mat-card>
+        <mat-list role="list" *ngFor="let todo of todos; let i=index">
+            <mat-list-item role="listitem">{{todo.notes}}
+                <button mat-stroked-button color="primary" aria-label="Delete" class="pl-16" (click)="removeNotes(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+        <ng-container *ngIf="todos.length == 0">
+            <p>No todo list avilable</p>
+        </ng-container>
+    </mat-card>
+</div>
